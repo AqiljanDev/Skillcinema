@@ -1,22 +1,16 @@
 package com.example.skillcinema.presentation.onBoarding
 
-import android.content.Context
-import android.content.SharedPreferences
-import android.graphics.PorterDuff
 import android.os.Bundle
 import android.text.Html
-import android.view.Display.Mode
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.skillcinema.R
 import com.example.skillcinema.databinding.FragmentNavigationBinding
 
-private const val PREFS_DATA = "prefs_data"
-private const val IS_INTRO_OPENED = "isIntroOpened"
 class NavigationFragment : Fragment() {
     private var _binding: FragmentNavigationBinding? = null
     private val binding get() = _binding!!
@@ -36,14 +30,6 @@ class NavigationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (restorePrefsData()) {
-            parentFragmentManager.beginTransaction()
-                .replace(
-                    R.id.container,
-                    LoadingFragment()
-                ).commit()
-        }
-
         binding.viewPager.adapter = ViewPagerAdapter()
         setDotIndicator(0)
 
@@ -54,16 +40,6 @@ class NavigationFragment : Fragment() {
                 setDotIndicator(position)
             }
         })
-
-        binding.tvSkip.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(
-                    R.id.container,
-                    LoadingFragment()
-                ).commit()
-
-            savePrefsData()
-        }
 
     }
 
@@ -85,19 +61,6 @@ class NavigationFragment : Fragment() {
         }
 
         dots[position].setTextColor(resources.getColor(R.color.black, resources.newTheme()))
-    }
-
-    private fun restorePrefsData(): Boolean {
-        val pref = requireContext().getSharedPreferences(PREFS_DATA, Context.MODE_PRIVATE)
-
-        return pref.getBoolean(IS_INTRO_OPENED, false)
-    }
-
-    private fun savePrefsData() {
-        val pref = requireContext().getSharedPreferences(PREFS_DATA, Context.MODE_PRIVATE)
-        pref.edit()
-            .putBoolean(IS_INTRO_OPENED, true)
-            .apply()
     }
 
     override fun onDestroyView() {
