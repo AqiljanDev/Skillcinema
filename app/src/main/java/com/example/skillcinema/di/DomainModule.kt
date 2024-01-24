@@ -3,6 +3,7 @@ package com.example.skillcinema.di
 import com.example.skillcinema.domain.repository.Repository
 import com.example.skillcinema.domain.useCase.GetListCollectionsUseCase
 import com.example.skillcinema.domain.useCase.GetListFilmsFilterUseCase
+import com.example.skillcinema.domain.useCase.GetListFilmsTypeUseCase
 import com.example.skillcinema.domain.useCase.GetListPremieresUseCase
 import dagger.Module
 import dagger.Provides
@@ -26,5 +27,10 @@ class DomainModule {
     @Provides
     fun provideGetListFilmsFilterUseCase(repository: Repository): GetListFilmsFilterUseCase {
         return GetListFilmsFilterUseCase(repository)
+    }
+
+    @Provides
+    fun provideGetListFilmsTypeUseCase(repository: Repository): GetListFilmsTypeUseCase {
+        return GetListFilmsTypeUseCase(repository)
     }
 }
