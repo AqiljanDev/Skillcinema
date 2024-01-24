@@ -9,5 +9,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="homepage">Homepage</string>
+    <string name="title">Title</string>
+    <string name="all">All</string>
+    <string name="premier">Премьеры</string>
+    <string name="popular">Популярное</string>
+    <string name="top_250">Топ-250</string>
+    <string name="series">Сериалы</string>
 
 </resources>

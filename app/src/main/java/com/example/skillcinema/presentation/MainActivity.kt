@@ -7,7 +7,9 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.skillcinema.R
 import com.example.skillcinema.databinding.ActivityMainBinding
 import com.example.skillcinema.presentation.onBoarding.NavigationFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
